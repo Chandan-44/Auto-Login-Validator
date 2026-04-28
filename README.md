@@ -127,7 +127,7 @@ This tool is strictly for:
 
 ## 👨‍💻 Author
 
-**Chandan Sharma**
+**Chandan Kumar**
 Cyber Security Enthusiast | Security Tool Builder
 
 * 💼 LinkedIn: https://linkedin.com/in/chandan-kumar-eh
