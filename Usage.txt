@@ -1,0 +1,103 @@
+===============================
+AUTO LOGIN VALIDATOR - USAGE
+===============================
+
+📌 OVERVIEW
+Auto Login Validator is a browser-based tool designed to test login functionality by automatically validating username and password combinations in a controlled and authorized environment.
+
+--------------------------------------------------
+
+⚙️ STEP-BY-STEP USAGE
+
+1. Open Target Website
+   - Navigate to the website containing the login form.
+
+2. Launch Tool
+   - Open the Auto Login Validator extension.
+
+3. Detect Login Form
+   - Click "detect" to auto-detect available forms
+   - Select the correct login form from dropdown
+
+4. Configure Selectors (if needed)
+   - Username field selector
+   - Password field selector
+   - Submit button selector
+
+   Example:
+   input[name="username"]
+   input[type="password"]
+   button[type="submit"]
+
+5. Set Success Conditions
+   - URL pattern (e.g. /dashboard, /home)
+   OR
+   - Success element (e.g. .welcome-msg)
+
+6. Set Failure Condition
+   - Error element (e.g. .error, .invalid-login)
+
+--------------------------------------------------
+
+📂 LOADING CREDENTIAL LISTS
+
+1. Upload Username List
+   - Click "load users"
+   - Select .txt file (one username per line)
+
+2. Upload Password List
+   - Click "load passwords"
+   - Select .txt file (one password per line)
+
+--------------------------------------------------
+
+🚀 RUN VALIDATION
+
+1. Click "START VALIDATION"
+2. Tool will:
+   - Iterate (username × password)
+   - Attempt login
+   - Track progress
+
+3. Monitor Logs
+   - Success → highlighted in green
+   - Failure → shown in logs
+   - Info → progress updates
+
+4. Stop Anytime
+   - Click "STOP" to halt execution
+
+--------------------------------------------------
+
+📊 OUTPUT
+
+- Real-time logs
+- Successful credential detection
+- Progress tracking (current/total attempts)
+
+--------------------------------------------------
+
+⚠️ IMPORTANT NOTES
+
+- Use only on systems you own or have permission to test
+- Designed for testing authentication logic, not brute-force attacks
+- Avoid excessive requests on production systems
+- Respect rate limits and legal boundaries
+
+--------------------------------------------------
+
+✅ BEST PRACTICES
+
+- Use small test lists first
+- Verify selectors before starting
+- Use clear success/failure conditions
+- Test on staging environments when possible
+
+--------------------------------------------------
+
+👨‍💻 AUTHOR
+Chandan Kumar
+
+--------------------------------------------------
+
+🔐 Ethical Use Only
