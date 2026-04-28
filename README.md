@@ -130,7 +130,7 @@ This tool is strictly for:
 **Chandan Sharma**
 Cyber Security Enthusiast | Security Tool Builder
 
-* 💼 LinkedIn: https://linekdin.com/in/chandan-kumar-eh
+* 💼 LinkedIn: https://linkedin.com/in/chandan-kumar-eh
 * 🐙 GitHub: https://github.com/Chandan-44
 
 ---
