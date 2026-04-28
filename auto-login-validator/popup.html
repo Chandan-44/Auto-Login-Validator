@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Login Validator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
+    }
+
+    body {
+      width: 520px;
+      background: linear-gradient(145deg, #0f172a 0%, #111827 100%);
+      color: #e2e8f0;
+      border-radius: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 1.2rem 1.5rem 1.8rem;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sub {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      border-left: 3px solid #3b82f6;
+      padding-left: 10px;
+      margin-bottom: 1.2rem;
+    }
+
+    .card {
+      background: #1e293b / 0.7;
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(2px);
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #334155;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a5f3fc;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px dashed #475569;
+      padding-bottom: 6px;
+    }
+
+    .form-detect-area {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    select, input, button {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f1f5f9;
+      border-radius: 40px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    select {
+      cursor: pointer;
+      flex: 2;
+    }
+
+    input {
+      flex: 1;
+    }
+
+    button {
+      background: #2563eb;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    button:hover {
+      background: #3b82f6;
+      transform: scale(0.98);
+    }
+
+    .danger-btn {
+      background: #dc2626;
+    }
+    .danger-btn:hover {
+      background: #ef4444;
+    }
+
+    .success-btn {
+      background: #16a34a;
+    }
+    .success-btn:hover {
+      background: #22c55e;
+    }
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .selector-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .selector-row label {
+      width: 110px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #cbd5e1;
+    }
+
+    .selector-row input {
+      flex: 1;
+      background: #0f172a;
+      font-family: monospace;
+    }
+
+    .file-row {
+      display: flex;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .file-row label {
+      background: #1e293b;
+      padding: 6px 12px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      border: 1px solid #475569;
+    }
+
+    .status-bar {
+      background: #0f172a;
+      border-radius: 28px;
+      padding: 8px 16px;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .log-box {
+      background: #0a0f1a;
+      border-radius: 18px;
+      padding: 12px;
+      height: 180px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      border: 1px solid #2d3a5e;
+    }
+
+    .log-entry {
+      border-bottom: 1px solid #1e2a3a;
+      padding: 5px 0;
+      color: #b9c7db;
+    }
+
+    .log-success {
+      color: #4ade80;
+    }
+    .log-error {
+      color: #f87171;
+    }
+    .log-info {
+      color: #7aa2f7;
+    }
+
+    .flex-btns {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    hr {
+      border-color: #334155;
+      margin: 10px 0;
+    }
+
+    footer {
+      font-size: 0.6rem;
+      text-align: center;
+      margin-top: 15px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🔐 LOGIN VALIDATOR</h1>
+  <div class="sub">auto iterate · username x password · smart detection</div>
+
+  <!-- form detection block -->
+  <div class="card">
+    <div class="section-title">📄 FORM DETECTION</div>
+    <div class="form-detect-area">
+      <select id="formSelect"></select>
+      <button id="refreshFormsBtn">⟳ detect</button>
+    </div>
+    <div style="font-size:0.7rem; color:#9ca3af;">⬆ select target login form</div>
+  </div>
+
+  <!-- selectors & config -->
+  <div class="card">
+    <div class="section-title">🎯 SELECTORS (auto-fill from form)</div>
+    <div class="selector-group">
+      <div class="selector-row">
+        <label>Username field:</label>
+        <input type="text" id="usernameSelector" placeholder="input[name='username'], #user, etc" value="input[type='text'], input[type='email']">
+      </div>
+      <div class="selector-row">
+        <label>Password field:</label>
+        <input type="text" id="passwordSelector" placeholder="input[type='password']" value="input[type='password']">
+      </div>
+      <div class="selector-row">
+        <label>Submit button:</label>
+        <input type="text" id="submitSelector" placeholder="button[type='submit'], .login-btn" value="button[type='submit'], input[type='submit']">
+      </div>
+    </div>
+    <div style="font-size:0.7rem; background:#0f172a; padding:6px 10px; border-radius:14px;" class="mt-1">
+      ⚡ success detection: URL contains <input type="text" id="successUrlPattern" placeholder="/dashboard, /home" style="width:130px; display:inline-block; padding:4px 8px;"> 
+      or element <input type="text" id="successElement" placeholder=".welcome-msg" style="width:130px; display:inline-block; padding:4px 8px;">
+    </div>
+    <div style="font-size:0.7rem; background:#0f172a; padding:6px 10px; border-radius:14px; margin-top:8px;">
+      ❌ failure detect (error) element: <input type="text" id="failureElement" placeholder=".error, .invalid" style="width:160px; display:inline-block; padding:4px 8px;">
+    </div>
+  </div>
+
+  <!-- file upload lists -->
+  <div class="card">
+    <div class="section-title">📂 CREDENTIAL LISTS</div>
+    <div class="file-row">
+      <label for="userFile">👤 Username list</label>
+      <input type="file" id="userFile" accept=".txt" style="display:none">
+      <button id="loadUserBtn" class="small-btn">📁 load users</button>
+      <span id="userCount" style="font-size:0.7rem;">(none)</span>
+    </div>
+    <div class="file-row">
+      <label for="passFile">🔑 Password list</label>
+      <input type="file" id="passFile" accept=".txt" style="display:none">
+      <button id="loadPassBtn" class="small-btn">📁 load passwords</button>
+      <span id="passCount" style="font-size:0.7rem;">(none)</span>
+    </div>
+    <div class="flex-btns">
+      <button id="startBtn" style="flex:1;">🚀 START VALIDATION</button>
+      <button id="stopBtn" class="danger-btn" style="flex:1;">⏹️ STOP</button>
+    </div>
+  </div>
+
+  <!-- status & logs -->
+  <div class="status-bar">
+    <span>📟 STATUS: <span id="statusText">idle</span></span>
+    <span>🔄 progress: <span id="progress">0/0</span></span>
+  </div>
+  <div class="log-box" id="logContainer">
+    <div class="log-entry log-info">⚡ Ready — select login form and load lists</div>
+  </div>
+  <footer>made for local validation · no external brute force · ethical use only</footer>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
